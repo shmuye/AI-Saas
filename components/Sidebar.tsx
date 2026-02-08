@@ -19,7 +19,7 @@ const montserrate = Montserrat({
     subsets: ['latin']
 })
 
-const routes = [
+export const routes = [
     {
         label: "Dashboard",
         icon: LayoutDashboard,
