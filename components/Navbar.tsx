@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
 import { UserButton } from "@clerk/nextjs"
-import MobileSidebar from "./MobileSidebar"
+import MobileSidebar from "@/components/MobileSidebar"
+
 const Navbar = () => {
   return (
     <div className="flex items-center p-4">
