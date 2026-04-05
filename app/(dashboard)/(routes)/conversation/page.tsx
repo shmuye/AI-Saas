@@ -18,6 +18,8 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import axios from "axios"
 import { cn } from "@/lib/utils"
+import { Empty } from "@/components/empty"
+import { Loader } from "@/components/loader"
 
 type Message = {
   role: "user" | "assistant",
@@ -114,15 +116,29 @@ const ConversationPage = () => {
             </form>
         </Form>
         <div className="space-y-4 mt-4">
+          {
+            isLoading && (
+              <div className="w-full p-8 rounded-lg flex items-center justify-center bg-muted">
+                   <Loader />
+              </div>
+            )
+          }
+          {
+            messages.length === 0 && !isLoading && (
+              <div>
+                 <Empty label="No Conversation Started" />
+              </div>
+            )
+          }
           <div className="flex flex-col-reverse gap-y-4">
           {
             messages.map((message, index) => (
               <div 
                 key={index}
                 className={cn(
-                  "p-4 rounded-md w-full",
-                  message.role === "user" ? "bg-white border" : "bg-violet-50 border-violet-200",
-                  message.role === "user" ? "text-right" : "text-left"
+                  "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                  message.role === "user" ? "bg-white border border-black/10" : "bg-muted",
+                  
                 )}
               >
                 {message.content}
